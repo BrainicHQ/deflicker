@@ -106,12 +106,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Write file to FFmpeg FS
             await ffmpeg.writeFile('input.mp4', await fetchFile(videoFile));
-            console.log("File written to FFmpeg FS");
+            const brightness = brightnessControl.value;
+            const contrast = contrastControl.value;
+            const filter = `eq=brightness=${brightness - 1}:contrast=${contrast}`;
 
-            // Simplified FFmpeg command for testing
             console.log("Executing FFmpeg command...");
+            // Using the new exec method
             console.time('exec');
-            await ffmpeg.exec(['-i', 'input.mp4', 'output.mp4']);
+            await ffmpeg.exec(['-i', 'input.mp4', '-vf', filter, 'output.mp4']);
             console.timeEnd('exec');
             console.log("FFmpeg command executed");
 
