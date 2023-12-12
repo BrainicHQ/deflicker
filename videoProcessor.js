@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             try {
                 await ffmpeg.load({
-                    coreURL: "./assets/core-mt/package/dist/umd/ffmpeg-core.js",
+                    coreURL: "https://brainichq.github.io/deflicker/assets/core-mt/package/dist/umd/ffmpeg-core.js",
                 });
                 console.log('FFmpeg Core is loaded');
             } catch (e) {
